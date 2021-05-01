@@ -13,6 +13,7 @@ TagManager:
   - yellow
   - pink
   - magenta
+  - colorChanger
   layers:
   - Default
   - TransparentFX
