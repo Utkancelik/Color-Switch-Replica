@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     public GameObject colorChanger;
- 
+
+    
 
     private Rigidbody2D rb2D;
     public float jumpForce = 10f;
@@ -38,16 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != currentColor)
-        {
-            Debug.Log("GAME OVER!");
-        }
-
         if (collision.tag == "colorChanger")
         {
             SetRandomColor();
-            Destroy(colorChanger);
+            Destroy(collision.gameObject);
+            return;
         }
+        if (collision.tag != currentColor)
+        {
+            SceneManager.LoadScene(0,LoadSceneMode.Single);
+            Debug.Log("GAME OVER!");
+        }
+
+        
        
     }
 
